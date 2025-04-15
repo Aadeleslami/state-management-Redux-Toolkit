@@ -23,25 +23,25 @@ const initialState = {
   error: "",
 };
 
- const userSlice = createSlice({
+const userSlice = createSlice({
   name: "user",
   initialState,
-  extraReducers: {
-    [getAsyncUsers.pending]: (state, action) => {
-      state.isLoading = true;
-      state.date = [];
-      state.error = "";
-    },
-    [getAsyncUsers.fulfilled]: (state, action) => {
-      state.isLoading = false
-      state.date = action.payload
-    }
-    [getAsyncUsers.rejected] : (state,action) => {
-      state.isLoading = false
-      state.data=[]
-      state.error = action.payload
-    }
+  extraReducers: (builder) => {
+    builder
+      .addCase(getAsyncUsers.pending, (state) => {
+        state.isLoading = true;
+        state.data = [];
+        state.error = "";
+      })
+      .addCase(getAsyncUsers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.data = action.payload;
+      })
+      .addCase(getAsyncUsers.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        state.data = [];
+      });
   },
 });
-const {} = userSlice.actions
-export default userSlice.reducer
+export default userSlice.reducer;
