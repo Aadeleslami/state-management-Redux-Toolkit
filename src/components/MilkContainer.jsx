@@ -7,7 +7,7 @@ function MilkContainer() {
   return (
     <div>
       <h2>Milk Number:{milk.numOfMilk}</h2>
-      <button onClick={()=>dispatch(buyMilk(2))}>buy milk</button>
+      <button onClick={()=>dispatch(buyMilk())}>buy milk</button>
     </div>
   );
 }
